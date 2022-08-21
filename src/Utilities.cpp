@@ -3,6 +3,7 @@
 
 #include <yaml-cpp/yaml.h>
 #include <sstream>
+#include <iostream>
 
 namespace scp {
 
@@ -34,20 +35,28 @@ void validateBridge(const YAML::Node& bridge) {
 	}
 }
 
-int parseBridgeLength(const YAML::Node& bridge) {
-	int length;
+double parseBridgeLength(const YAML::Node& lengthYaml) {
+	double length;
 	std::string units;
-	std::stringstream ss(bridge["length"].as<std::string>());
+	std::stringstream ss(lengthYaml.as<std::string>());
 	ss >> length >> units;
+
+	if (length < 0) {
+		throw YamlParseError("bridge length {" + std::to_string(length) + "} must be >= 0");
+	}
 	return length;
 }
 
-int parseHikerSpeed(const YAML::Node& hiker) {
-	int length;
+double parseHikerSpeed(const YAML::Node& hikerYaml) {
+	double speed;
 	std::string units;
-	std::stringstream ss(hiker.as<std::string>());
-	ss >> length >> units;
-	return length;
+	std::stringstream ss(hikerYaml.as<std::string>());
+	ss >> speed >> units;
+
+	if (speed <= 0) {
+		throw YamlParseError("hiker speed {" + std::to_string(speed) + "} must be > 0");
+	}
+	return speed;
 }
 
 } // namespace scp

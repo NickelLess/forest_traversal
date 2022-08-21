@@ -1,0 +1,17 @@
+scenario: 
+  - bridge:
+      length: "100 ft"
+      hikers:
+        - "100 ft/min"
+        - "50 ft/min"
+        - "20 ft/min"
+        - "10 ft/min"
+  - bridge:
+      length: "250 ft"
+      hikers:
+        - "2.5 ft/min"
+  - bridge:
+      length: "150 ft"
+      hikers:
+        - "25 ft/min"
+        - "15 ft/min"

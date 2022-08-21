@@ -10,8 +10,8 @@ namespace scp {
 void validateScenario(const YAML::Node& scenario);
 void validateBridge(const YAML::Node& bridge);
 
-int parseHikerSpeed(const YAML::Node& hiker);
-int parseBridgeLength(const YAML::Node& bridge);
+double parseBridgeLength(const YAML::Node& length);
+double parseHikerSpeed(const YAML::Node& hiker);
 
 } // namespace scp
 

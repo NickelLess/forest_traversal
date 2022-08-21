@@ -14,10 +14,10 @@ struct Args : public MainArguments<Args> {
 int main(int argc, char** argv) {
 	Args args{ argc, argv };
 
+	std::cout << "Consuming input file: " << args.input_file << std::endl;
 	try {
 		Scenario scenario{ YAML::LoadFile(args.input_file) };
 		auto totalTime = scenario.computeScenarioTime();
-		std::cout << "Total time to complete the scenario in listed input file {" << args.input_file << "}: " << totalTime;
 	}
 	catch (const YamlParseError& error) {
 		std::cout << "Yaml Error: " << error.what() << std::endl;

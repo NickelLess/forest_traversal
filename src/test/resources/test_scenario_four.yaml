@@ -5,6 +5,8 @@ scenario:
         - "10 ft/min"
   - bridge:
       length: "100 ft"
+  - bridge:
+      length: "100 ft"
       hikers:
         - "20 ft/min"
         - "50 ft/min"
