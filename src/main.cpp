@@ -14,13 +14,18 @@ struct Args : public MainArguments<Args> {
 int main(int argc, char** argv) {
 	Args args{ argc, argv };
 
-	std::cout << "Consuming input file: " << args.input_file << std::endl;
-	try {
-		Scenario scenario{ YAML::LoadFile(args.input_file) };
-		auto totalTime = scenario.computeScenarioTime();
+	if (!args.input_file.empty()) {
+		std::cout << "Consuming input file: " << args.input_file << std::endl;
+		try {
+			Scenario scenario{ YAML::LoadFile(args.input_file) };
+			auto totalTime = scenario.computeScenarioTime();
+		}
+		catch (const YamlParseError& error) {
+			std::cout << "Yaml Error: " << error.what() << std::endl;
+		}
 	}
-	catch (const YamlParseError& error) {
-		std::cout << "Yaml Error: " << error.what() << std::endl;
+	else {
+		std::cout << "no input file provided, use: '--input-file {file_path}`" << std::endl;
 	}
 
 	return 0;
